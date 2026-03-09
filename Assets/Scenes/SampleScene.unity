@@ -521,7 +521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff3034ee034874b1ba629bc2f81a34e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleSpawner
-  _obstaclePrefab: {fileID: 8416074648397921459, guid: 872414341457d4a1fb90575a72b27a16, type: 3}
+  _obstaclePrefab: {fileID: 3192569779033247782, guid: 2b4d4f72a35a04e718b73b691404f4b6, type: 3}
   _spawnInterval: 2
 --- !u!1 &699447122
 GameObject:

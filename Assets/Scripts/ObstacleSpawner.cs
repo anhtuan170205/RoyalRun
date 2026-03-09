@@ -25,7 +25,7 @@ public class ObstacleSpawner : MonoBehaviour
     private void SpawnObstacle()
     {
         Vector3 spawnPosition = new Vector3(Random.Range(-3f, 3f), 5, transform.position.z);
-        Instantiate(_obstaclePrefab, spawnPosition, Quaternion.identity);
+        Instantiate(_obstaclePrefab, spawnPosition, Random.rotation);
         _spawnedObstaclesCount++;
     }
 }
