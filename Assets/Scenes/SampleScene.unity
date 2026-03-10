@@ -488,7 +488,7 @@ GameObject:
   - component: {fileID: 417949535}
   - component: {fileID: 417949536}
   m_Layer: 0
-  m_Name: Obstacles Spawner
+  m_Name: ObstaclesSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -521,8 +521,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff3034ee034874b1ba629bc2f81a34e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleSpawner
-  _obstaclePrefab: {fileID: 3192569779033247782, guid: 2b4d4f72a35a04e718b73b691404f4b6, type: 3}
+  _obstaclePrefabs:
+  - {fileID: 2503111737055957446, guid: 6ee4c8c9cf7d94230afeaf637b7f84ce, type: 3}
+  - {fileID: 9157434515322108705, guid: 4fe160544d7954f7b88f148a03fa4799, type: 3}
+  - {fileID: 3192569779033247782, guid: 2b4d4f72a35a04e718b73b691404f4b6, type: 3}
+  - {fileID: 1376355105503386714, guid: b6616873987ef4007a33031f5682d335, type: 3}
+  - {fileID: 7198687979616305260, guid: 133a4048a85e24a8f986c45e05ddd2a3, type: 3}
   _spawnInterval: 2
+  _obstacleParent: {fileID: 1412562409}
 --- !u!1 &699447122
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,6 +650,37 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1013758697}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1412562408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1412562409}
+  m_Layer: 0
+  m_Name: ObstaclesParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1412562409
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412562408}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -810,3 +847,4 @@ SceneRoots:
   - {fileID: 699447124}
   - {fileID: 1013758698}
   - {fileID: 417949535}
+  - {fileID: 1412562409}

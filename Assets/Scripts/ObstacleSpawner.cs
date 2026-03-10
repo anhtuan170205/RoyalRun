@@ -1,10 +1,12 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _obstaclePrefab;
+    [SerializeField] private List<GameObject> _obstaclePrefabs;
     [SerializeField] private float _spawnInterval = 2f;
+    [SerializeField] private Transform _obstacleParent;
 
     private int _spawnedObstaclesCount = 0;
 
@@ -25,7 +27,8 @@ public class ObstacleSpawner : MonoBehaviour
     private void SpawnObstacle()
     {
         Vector3 spawnPosition = new Vector3(Random.Range(-3f, 3f), 5, transform.position.z);
-        Instantiate(_obstaclePrefab, spawnPosition, Random.rotation);
+        int randomIndex = Random.Range(0, _obstaclePrefabs.Count);
+        Instantiate(_obstaclePrefabs[randomIndex], spawnPosition, Quaternion.identity, _obstacleParent);
         _spawnedObstaclesCount++;
     }
 }
