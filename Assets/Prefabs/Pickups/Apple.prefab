@@ -133,8 +133,54 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2719117497536571825, guid: 5fbb6ee7925b146c0abaa1ad4da1ac89, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6263083827656770579}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8720713313488599754, guid: 5fbb6ee7925b146c0abaa1ad4da1ac89, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -376149439068074544}
+    - targetCorrespondingSourceObject: {fileID: 8720713313488599754, guid: 5fbb6ee7925b146c0abaa1ad4da1ac89, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6729617467943594058}
   m_SourcePrefab: {fileID: 100100000, guid: 5fbb6ee7925b146c0abaa1ad4da1ac89, type: 3}
+--- !u!1 &973118475777937338 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8720713313488599754, guid: 5fbb6ee7925b146c0abaa1ad4da1ac89, type: 3}
+  m_PrefabInstance: {fileID: 8396685068111508848}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &-376149439068074544
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973118475777937338}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8, z: 0}
+--- !u!114 &-6729617467943594058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973118475777937338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ebbf1cf5b73b475ab79e92efe350481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Apple
 --- !u!4 &5853336332887891137 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2719117497536571825, guid: 5fbb6ee7925b146c0abaa1ad4da1ac89, type: 3}
