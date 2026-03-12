@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private InputReader _inputReader;
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private float _xClamp = 3f;
     [SerializeField] private float _zClamp = 3f;
