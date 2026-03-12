@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class PlayerMoveState : PlayerBaseState
 {
-
+    private readonly int RUN_HASH = Animator.StringToHash("Run");
     public PlayerMoveState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()
     {
-        
+        StateMachine.Animator.Play(RUN_HASH);
     }
 
     public override void Tick(float deltaTime)
