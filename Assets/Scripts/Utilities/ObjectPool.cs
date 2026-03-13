@@ -31,9 +31,7 @@ public class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
         {
             if (_expandable)
             {
-                T newInstance = Instantiate(_prefab, transform);
-                newInstance.gameObject.SetActive(true);
-                return newInstance;
+                AddObjectToPool();
             }
             else
             {

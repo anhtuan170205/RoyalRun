@@ -3,22 +3,28 @@ using System.Collections.Generic;
 
 public class LevelGenerator : SingletonMonoBehaviour<LevelGenerator>
 {
-    [SerializeField] private GameObject _chunkPrefab;
-    [SerializeField] private int _initialChunksCount = 10;
-    [SerializeField] private Transform _chunkParent;
+    [SerializeField] private ChunkPool _chunkPool;
+    [SerializeField] private int _initialChunksCount = 5;
     [SerializeField] private float _chunkLength = 10f;
     [SerializeField] private float _moveSpeed = 5f;
 
-    private List<GameObject> _activeChunks = new List<GameObject>();
+    private readonly List<Chunk> _activeChunks = new List<Chunk>();
+    private Camera _mainCamera;
 
     protected override void Awake()
     {
         base.Awake();
+        _mainCamera = Camera.main;
     }
 
     private void Start()
     {
         SpawnInitialChunks();
+    }
+
+    private void Update()
+    {
+        MoveChunks();
     }
 
     private void SpawnInitialChunks()
@@ -29,33 +35,28 @@ public class LevelGenerator : SingletonMonoBehaviour<LevelGenerator>
         }
     }
 
-    private void Update()
-    {
-        MoveChunks();
-    }
-
     private float CalculateSpawnPositionZ()
     {
-        float spawnPositionZ;
-
         if (_activeChunks.Count == 0)
         {
-            spawnPositionZ = transform.position.z;
-        }
-        else
-        {
-            GameObject lastChunk = _activeChunks[_activeChunks.Count - 1];
-            spawnPositionZ = lastChunk.transform.position.z + _chunkLength;
+            return transform.position.z;
         }
 
-        return spawnPositionZ;
+        Chunk lastChunk = _activeChunks[_activeChunks.Count - 1];
+        return lastChunk.transform.position.z + _chunkLength;
     }
 
     private void SpawnChunk()
     {
+        Chunk newChunk = _chunkPool.GetObjectFromPool();
+        if (newChunk == null) { return; }
+
         float spawnPositionZ = CalculateSpawnPositionZ();
         Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y, spawnPositionZ);
-        GameObject newChunk = Instantiate(_chunkPrefab, spawnPosition, Quaternion.identity, _chunkParent);
+
+        newChunk.transform.position = spawnPosition;
+        newChunk.transform.rotation = Quaternion.identity;
+
         _activeChunks.Add(newChunk);
     }
 
@@ -63,16 +64,21 @@ public class LevelGenerator : SingletonMonoBehaviour<LevelGenerator>
     {
         for (int i = 0; i < _activeChunks.Count; i++)
         {
-            GameObject chunk = _activeChunks[i];
+            Chunk chunk = _activeChunks[i];
             chunk.transform.Translate(-transform.forward * _moveSpeed * Time.deltaTime);
 
-            if (chunk.transform.position.z <= Camera.main.transform.position.z - _chunkLength)
+            if (IsChunkBehindCamera(chunk))
             {
                 _activeChunks.Remove(chunk);
-                Destroy(chunk);
+                _chunkPool.ReturnObjectToPool(chunk);
                 SpawnChunk();
             }
         }
+    }
+
+    private bool IsChunkBehindCamera(Chunk chunk)
+    {
+        return chunk.transform.position.z < _mainCamera.transform.position.z - _chunkLength;
     }
 
 }

@@ -6,6 +6,7 @@ public class Chunk : MonoBehaviour
     [SerializeField] private GameObject _fencePrefab;
     [SerializeField] private GameObject _applePrefab;
     [SerializeField] private GameObject _coinPrefab;
+    [SerializeField] private Transform _propsParent;
 
     [SerializeField] private float _appleSpawnRate = 0.3f;
     [SerializeField] private float _coinSpawnRate = 0.5f;
@@ -15,11 +16,17 @@ public class Chunk : MonoBehaviour
 
     private List<int> _availableLanes = new List<int> { 0, 1, 2 };
 
-    private void Start()
+    private void OnEnable()
     {
         SpawnFences();
         SpawnApple();
         SpawnCoins();
+    }
+
+    private void OnDisable()
+    {
+        DespawnAllProps();
+        _availableLanes = new List<int> { 0, 1, 2 };
     }
 
     private void SpawnFences()
@@ -31,7 +38,7 @@ public class Chunk : MonoBehaviour
             int selectedLane = SelectLane();
 
             Vector3 spawnPosition = new Vector3(_lanes[selectedLane], 0, transform.position.z);
-            Instantiate(_fencePrefab, spawnPosition, Quaternion.identity, transform);
+            Instantiate(_fencePrefab, spawnPosition, Quaternion.identity, _propsParent);
         }
     }
 
@@ -41,7 +48,7 @@ public class Chunk : MonoBehaviour
 
         int selectedLane = SelectLane();
         Vector3 spawnPosition = new Vector3(_lanes[selectedLane], transform.position.y, transform.position.z);
-        Instantiate(_applePrefab, spawnPosition, Quaternion.identity, transform);
+        Instantiate(_applePrefab, spawnPosition, Quaternion.identity, _propsParent);
     }
 
     private void SpawnCoins()
@@ -56,7 +63,15 @@ public class Chunk : MonoBehaviour
         {
             float spawnPositionZ = topOfChunkZ - i * _coinSeparationLength;
             Vector3 spawnPosition = new Vector3(_lanes[selectedLane], transform.position.y, spawnPositionZ);
-            Instantiate(_coinPrefab, spawnPosition, Quaternion.identity, transform);
+            Instantiate(_coinPrefab, spawnPosition, Quaternion.identity, _propsParent);
+        }
+    }
+
+    private void DespawnAllProps()
+    {
+        foreach (Transform child in _propsParent)
+        {
+            Destroy(child.gameObject);
         }
     }
 
