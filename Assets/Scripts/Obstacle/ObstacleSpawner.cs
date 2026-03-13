@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class ObstacleSpawner : MonoBehaviour
+public class ObstacleSpawner : SingletonMonoBehaviour<ObstacleSpawner>
 {
     [SerializeField] private ObstaclePool[] _obstaclePools;
     [SerializeField] private bool _autoSpawn = true;
@@ -14,6 +14,11 @@ public class ObstacleSpawner : MonoBehaviour
     [SerializeField] private float _spawnHeight = 5f;
 
     private int _spawnedObstaclesCount = 0;
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
 
     private void Start()
     {

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class CollisionDetector : MonoBehaviour
+public class CollisionHandler : MonoBehaviour
 {
     public event Action OnCollideWithHazard;
     public event Action OnCollideWithObstacle;

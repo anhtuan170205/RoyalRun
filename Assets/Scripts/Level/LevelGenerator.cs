@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class LevelGenerator : MonoBehaviour
+public class LevelGenerator : SingletonMonoBehaviour<LevelGenerator>
 {
     [SerializeField] private GameObject _chunkPrefab;
     [SerializeField] private int _initialChunksCount = 10;
@@ -10,6 +10,11 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private float _moveSpeed = 5f;
 
     private List<GameObject> _activeChunks = new List<GameObject>();
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
 
     private void Start()
     {
