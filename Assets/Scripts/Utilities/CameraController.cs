@@ -5,6 +5,7 @@ using Unity.Cinemachine;
 [RequireComponent(typeof(CinemachineCamera))]
 public class CameraController : SingletonMonoBehaviour<CameraController>
 {
+    [SerializeField] private ParticleSystem speedUpEffect;
     [SerializeField] private float minFOV = 20f;
     [SerializeField] private float maxFOV = 120f;
     [SerializeField] private float zoomDuration = 1f;
@@ -22,6 +23,11 @@ public class CameraController : SingletonMonoBehaviour<CameraController>
     {
         StopAllCoroutines();
         StartCoroutine(ChangeFOVRoutine(amount));
+
+        if (amount > 0)
+        {
+            speedUpEffect.Play();
+        }
     }
 
     private IEnumerator ChangeFOVRoutine(float amount)
