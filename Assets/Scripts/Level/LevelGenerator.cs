@@ -85,6 +85,8 @@ public class LevelGenerator : SingletonMonoBehaviour<LevelGenerator>
     public void ChangeLevelSpeed(float amount)
     {
         _moveSpeed = Mathf.Clamp(_moveSpeed + amount, _minMoveSpeed, float.MaxValue);
+        Physics.gravity = new Vector3(Physics.gravity.x, Physics.gravity.y, Physics.gravity.z - _moveSpeed);
+        CameraController.Instance.ChangeCameraFOV(amount);
     }
 
 }
