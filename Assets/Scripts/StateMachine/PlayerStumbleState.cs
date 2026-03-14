@@ -9,6 +9,7 @@ public class PlayerStumbleState : PlayerBaseState
     public override void Enter()
     {
         StateMachine.Animator.CrossFade(STUMBLE_HASH, CROSS_FADE_DURATION);
+        LevelGenerator.Instance.ChangeLevelSpeed(-1f);
     }
 
     public override void Tick(float deltaTime)

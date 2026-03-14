@@ -7,6 +7,7 @@ public class LevelGenerator : SingletonMonoBehaviour<LevelGenerator>
     [SerializeField] private int _initialChunksCount = 5;
     [SerializeField] private float _chunkLength = 10f;
     [SerializeField] private float _moveSpeed = 5f;
+    [SerializeField] private float _minMoveSpeed = 2f;
 
     private readonly List<Chunk> _activeChunks = new List<Chunk>();
     private Camera _mainCamera;
@@ -79,6 +80,11 @@ public class LevelGenerator : SingletonMonoBehaviour<LevelGenerator>
     private bool IsChunkBehindCamera(Chunk chunk)
     {
         return chunk.transform.position.z < _mainCamera.transform.position.z - _chunkLength;
+    }
+
+    public void ChangeLevelSpeed(float amount)
+    {
+        _moveSpeed = Mathf.Clamp(_moveSpeed + amount, _minMoveSpeed, float.MaxValue);
     }
 
 }

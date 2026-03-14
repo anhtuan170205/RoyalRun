@@ -4,7 +4,7 @@ public class Apple : Pickup
 {
     protected override void OnPickup()
     {
-        Debug.Log("Apple collected!"); 
+        LevelGenerator.Instance.ChangeLevelSpeed(2f);
         Destroy(gameObject);
     }
 }
